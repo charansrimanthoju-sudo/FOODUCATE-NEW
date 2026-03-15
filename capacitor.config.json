@@ -1,0 +1,6 @@
+{
+  "appId": "com.fooducate.app",
+  "appName": "FOODUCATE",
+  "webDir": "dist",
+  "bundledWebRuntime": false
+}

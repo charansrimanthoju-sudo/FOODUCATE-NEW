@@ -1,0 +1,21 @@
+{
+  "name": "FOODUCATE - Eat with Intention",
+  "short_name": "FOODUCATE",
+  "description": "AI-powered food analysis and barcode decoder.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5f5f0",
+  "theme_color": "#5A5A40",
+  "icons": [
+    {
+      "src": "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&q=80&w=192",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&q=80&w=512",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

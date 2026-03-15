@@ -1,0 +1,7 @@
+{
+  "name": "FOODUCATE",
+  "description": "An AI-powered food education and recipe companion that helps you understand what you eat and discover new culinary delights.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
