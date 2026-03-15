@@ -28,19 +28,19 @@ const Logo = ({ className = "", onClick }: { className?: string, onClick?: () =>
     onClick={onClick}
   >
     <div className="relative">
-      <div className="w-10 h-10 bg-brand-ink rounded-lg flex items-center justify-center text-white transform transition-all group-hover:scale-105">
-        <ShieldCheck size={20} strokeWidth={2} />
+      <div className="w-10 h-10 bg-brand-ink rounded-xl flex items-center justify-center text-white transform transition-transform group-hover:rotate-12">
+        <ShieldCheck size={22} strokeWidth={2.5} />
       </div>
-      <div className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-brand-accent rounded-full border-2 border-brand-cream flex items-center justify-center">
-        <Zap size={8} className="text-white fill-current" />
+      <div className="absolute -top-1 -right-1 w-4 h-4 bg-brand-clay rounded-full flex items-center justify-center">
+        <Zap size={10} className="text-white fill-current" />
       </div>
     </div>
     <div className="flex flex-col">
-      <span className="text-xl font-serif font-bold tracking-tight text-brand-ink leading-none">
+      <span className="text-2xl font-serif font-bold tracking-tight text-brand-ink leading-none">
         FOODUCATE
       </span>
-      <span className="text-[8px] uppercase tracking-[0.25em] font-medium text-brand-ink/40 leading-none mt-1">
-        Molecular Awareness Lab
+      <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-brand-clay leading-none mt-1">
+        Food Awareness Lab
       </span>
     </div>
   </div>
@@ -233,115 +233,88 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col lab-grid">
+    <div className="min-h-screen flex flex-col">
       {/* Navigation */}
-      <nav className="sticky top-0 z-40 bg-brand-cream/80 backdrop-blur-md border-b border-brand-border">
-        <div className="px-6 py-4 flex justify-between items-center max-w-7xl mx-auto w-full">
-          <Logo onClick={() => { setView('home'); setShowHelp(false); }} />
-          <div className="hidden md:flex gap-8 items-center text-[10px] font-bold uppercase tracking-[0.2em] text-brand-ink/60">
-            <button onClick={() => { setView('home'); setShowHelp(false); }} className="hover:text-brand-ink transition-colors">Overview</button>
-            <div className="w-px h-4 bg-brand-border" />
-            <button 
-              onClick={() => barcodeInputRef.current?.click()}
-              className="flex items-center gap-2 hover:text-brand-ink transition-all"
-            >
-              <Barcode size={14} />
-              <span>Barcode Scan</span>
-            </button>
-            <button 
-              onClick={() => fileInputRef.current?.click()}
-              className="bg-brand-ink text-white px-5 py-2.5 rounded-md hover:bg-brand-ink/90 transition-all"
-            >
-              Analyze Specimen
-            </button>
-          </div>
+      <nav className="px-6 py-8 flex justify-between items-center max-w-7xl mx-auto w-full">
+        <Logo onClick={() => { setView('home'); setShowHelp(false); }} />
+        <div className="flex gap-8 items-center text-sm font-medium uppercase tracking-widest text-brand-olive/70">
+          <button onClick={() => { setView('home'); setShowHelp(false); }} className="hover:text-brand-olive transition-colors">Home</button>
+          <button 
+            onClick={() => barcodeInputRef.current?.click()}
+            className="flex items-center gap-2 border border-brand-olive/20 px-4 py-2 rounded-full hover:bg-brand-olive/5 transition-all"
+          >
+            <Barcode size={16} />
+            <span>Scan Barcode</span>
+          </button>
+          <button 
+            onClick={() => fileInputRef.current?.click()}
+            className="bg-brand-olive text-white px-6 py-2 rounded-full hover:bg-brand-olive/90 transition-all"
+          >
+            Scan Food
+          </button>
         </div>
       </nav>
 
-      <main className="flex-1 max-w-7xl mx-auto w-full px-6 py-12">
+      <main className="flex-1 max-w-7xl mx-auto w-full px-6 pb-20">
         <AnimatePresence mode="wait">
           {view === 'home' && (
             <motion.div 
               key="home"
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              className="grid lg:grid-cols-2 gap-20 items-center pt-8"
+              exit={{ opacity: 0, y: -20 }}
+              className="grid lg:grid-cols-2 gap-16 items-center pt-12"
             >
-              <div className="space-y-10">
-                <div className="space-y-4">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-brand-accent/10 border border-brand-accent/20 rounded-full text-[10px] font-bold uppercase tracking-widest text-brand-accent">
-                    <Activity size={12} />
-                    AI-Powered Nutritional Intelligence
-                  </div>
-                  <h1 className="text-7xl lg:text-8xl font-serif leading-[0.85] tracking-tighter text-brand-ink">
-                    Decode <br />
-                    <span className="italic text-brand-accent">Nutrition.</span>
-                  </h1>
-                </div>
-                <p className="text-lg text-brand-ink/60 max-w-md leading-relaxed font-light">
-                  FOODUCATE leverages molecular-level AI analysis to deconstruct your meals, exposing hidden additives and providing clinical-grade nutritional insights.
+              <div className="space-y-8">
+                <h1 className="text-7xl lg:text-8xl font-serif leading-[0.9] tracking-tight text-brand-ink">
+                  Eat with <br />
+                  <span className="italic text-brand-clay">Intention.</span>
+                </h1>
+                <p className="text-xl text-brand-olive/80 max-w-md leading-relaxed">
+                  FOODUCATE uses advanced AI to decode your meals, providing nutritional insights and ingredient safety analysis at your fingertips.
                 </p>
-                <div className="flex flex-wrap gap-4 pt-4">
+                <div className="flex flex-wrap gap-4">
                   <button 
                     onClick={() => fileInputRef.current?.click()}
-                    className="flex items-center gap-3 bg-brand-ink text-white px-10 py-5 rounded-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                    className="flex items-center gap-2 bg-brand-ink text-white px-8 py-4 rounded-2xl hover:scale-105 transition-transform"
                   >
-                    <Camera size={18} />
-                    <span className="text-sm font-bold uppercase tracking-widest">Analyze Specimen</span>
+                    <Camera size={20} />
+                    <span>Analyze Meal</span>
                   </button>
                   <button 
                     onClick={() => barcodeInputRef.current?.click()}
-                    className="flex items-center gap-3 border border-brand-ink/10 bg-white px-10 py-5 rounded-lg hover:bg-brand-ink hover:text-white transition-all duration-300"
+                    className="flex items-center gap-2 bg-brand-olive text-white px-8 py-4 rounded-2xl hover:scale-105 transition-transform"
                   >
-                    <Barcode size={18} />
-                    <span className="text-sm font-bold uppercase tracking-widest">Scan Barcode</span>
+                    <Barcode size={20} />
+                    <span>Scan Barcode</span>
                   </button>
-                </div>
-                
-                <div className="flex items-center gap-8 pt-8 border-t border-brand-border">
-                  <div>
-                    <div className="text-2xl font-serif">99.4%</div>
-                    <div className="data-label">AI Accuracy</div>
-                  </div>
-                  <div className="w-px h-8 bg-brand-border" />
-                  <div>
-                    <div className="text-2xl font-serif">2.4M+</div>
-                    <div className="data-label">Items Indexed</div>
-                  </div>
                 </div>
               </div>
 
               <div className="relative">
-                <div className="aspect-[4/5] relative overflow-hidden rounded-2xl shadow-2xl">
+                <div className="grid grid-cols-2 gap-4">
                   <motion.img 
-                    initial={{ scale: 1.1, opacity: 0 }}
+                    initial={{ scale: 0.9, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
-                    transition={{ duration: 1.2 }}
-                    src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&q=80&w=1200" 
-                    className="w-full h-full object-cover"
+                    transition={{ delay: 0.2 }}
+                    src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&q=80&w=800" 
+                    className="pill-image w-full"
+                    alt="Processed Food Awareness"
+                    referrerPolicy="no-referrer"
+                  />
+                  <motion.img 
+                    initial={{ scale: 0.9, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 0.4 }}
+                    src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&q=80&w=800" 
+                    className="pill-image w-full mt-12"
                     alt="Healthy Nutrition"
                     referrerPolicy="no-referrer"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-ink/40 to-transparent" />
-                  <div className="absolute bottom-10 left-10 right-10">
-                    <div className="glass-card p-6 rounded-xl border-white/20">
-                      <div className="flex items-center gap-3 mb-3">
-                        <div className="w-8 h-8 bg-brand-accent rounded-full flex items-center justify-center text-white">
-                          <ShieldCheck size={16} />
-                        </div>
-                        <span className="text-xs font-bold uppercase tracking-widest text-brand-ink">Lab Verified</span>
-                      </div>
-                      <p className="text-sm font-serif italic text-brand-ink/80 leading-relaxed">
-                        "Our mission is to bridge the gap between complex nutritional science and daily dietary choices."
-                      </p>
-                    </div>
-                  </div>
                 </div>
-                
-                {/* Decorative Elements */}
-                <div className="absolute -top-6 -right-6 w-24 h-24 border border-brand-border rounded-full flex items-center justify-center animate-pulse">
-                  <div className="w-16 h-16 border border-brand-accent/20 rounded-full" />
+                <div className="absolute -bottom-8 -left-8 glass-card p-6 rounded-3xl max-w-[200px]">
+                  <ShieldAlert className="text-brand-clay mb-2" />
+                  <p className="text-sm font-serif italic">"Awareness is the first step toward change."</p>
                 </div>
               </div>
             </motion.div>
@@ -352,28 +325,34 @@ export default function App() {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              className="mt-40 py-24 border-t border-brand-border"
+              className="mt-32 py-20 border-y border-brand-olive/5"
             >
-              <div className="grid md:grid-cols-3 gap-16">
-                <div className="space-y-6">
-                  <div className="data-label">01 / Analysis</div>
-                  <h3 className="text-3xl font-serif leading-tight">Molecular <br />Deconstruction</h3>
-                  <p className="text-brand-ink/50 text-sm leading-relaxed font-light">
-                    Our AI models analyze visual and textual data to identify over 2,000 distinct chemical additives and nutritional markers.
+              <div className="grid md:grid-cols-3 gap-12">
+                <div className="space-y-4">
+                  <div className="w-12 h-12 bg-red-50 rounded-2xl flex items-center justify-center text-red-600">
+                    <AlertTriangle size={24} />
+                  </div>
+                  <h3 className="text-2xl font-serif">The Junk Food Crisis</h3>
+                  <p className="text-brand-olive/70 text-sm leading-relaxed">
+                    Ultra-processed foods make up over 60% of the average diet, contributing to chronic health issues worldwide.
                   </p>
                 </div>
-                <div className="space-y-6">
-                  <div className="data-label">02 / Insights</div>
-                  <h3 className="text-3xl font-serif leading-tight">Clinical <br />Grade Data</h3>
-                  <p className="text-brand-ink/50 text-sm leading-relaxed font-light">
-                    Receive detailed reports on macronutrients, potential health risks, and metabolic burn rates based on your unique profile.
+                <div className="space-y-4">
+                  <div className="w-12 h-12 bg-brand-olive/5 rounded-2xl flex items-center justify-center text-brand-olive">
+                    <Search size={24} />
+                  </div>
+                  <h3 className="text-2xl font-serif">Hidden Truths</h3>
+                  <p className="text-brand-olive/70 text-sm leading-relaxed">
+                    Marketing often masks harmful additives. We use AI to peel back the labels and reveal what's actually inside.
                   </p>
                 </div>
-                <div className="space-y-6">
-                  <div className="data-label">03 / Impact</div>
-                  <h3 className="text-3xl font-serif leading-tight">Dietary <br />Sovereignty</h3>
-                  <p className="text-brand-ink/50 text-sm leading-relaxed font-light">
-                    Reclaim control over your biology by making informed decisions backed by data, not marketing.
+                <div className="space-y-4">
+                  <div className="w-12 h-12 bg-brand-clay/5 rounded-2xl flex items-center justify-center text-brand-clay">
+                    <ShieldCheck size={24} />
+                  </div>
+                  <h3 className="text-2xl font-serif">Empowered Choice</h3>
+                  <p className="text-brand-olive/70 text-sm leading-relaxed">
+                    Knowledge is power. By understanding your food, you reclaim control over your health and your future.
                   </p>
                 </div>
               </div>
@@ -383,122 +362,108 @@ export default function App() {
           {view === 'analyze' && analysis && (
             <motion.div 
               key="analyze"
-              initial={{ opacity: 0, scale: 0.98 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.98 }}
-              className="grid lg:grid-cols-[1fr_400px] gap-12 items-start"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="pt-12 grid lg:grid-cols-2 gap-12"
             >
-              <div className="glass-card rounded-2xl overflow-hidden border-brand-border">
-                <div className="p-8 border-b border-brand-border flex justify-between items-center bg-white/40">
-                  <div>
-                    <div className="data-label mb-1">Specimen Analysis Report</div>
-                    <h2 className="text-4xl font-serif">{analysis.name}</h2>
+              <div className="space-y-8">
+                <button 
+                  onClick={() => { setView('home'); setShowHelp(false); }}
+                  className="flex items-center gap-2 text-sm text-brand-olive/60 hover:text-brand-olive"
+                >
+                  <X size={16} /> Close Analysis
+                </button>
+                <div className="flex justify-between items-start gap-4">
+                  <div className="space-y-4">
+                    <h2 className="text-5xl font-serif">{analysis.name}</h2>
+                    <p className="text-lg text-brand-olive/80 leading-relaxed">{analysis.description}</p>
                   </div>
-                  <div className={`w-16 h-16 rounded-lg flex items-center justify-center text-3xl font-serif font-bold ${
-                    analysis.grade === 'A' ? 'bg-emerald-50 text-emerald-600 border border-emerald-100' :
-                    analysis.grade === 'B' ? 'bg-blue-50 text-blue-600 border border-blue-100' :
-                    analysis.grade === 'C' ? 'bg-amber-50 text-amber-600 border border-amber-100' :
-                    'bg-rose-50 text-rose-600 border border-rose-100'
+                  <div className={`shrink-0 w-20 h-20 rounded-2xl flex items-center justify-center text-4xl font-serif font-bold shadow-sm border ${
+                    analysis.grade === 'A' ? 'bg-green-100 text-green-700 border-green-200' :
+                    analysis.grade === 'B' ? 'bg-blue-100 text-blue-700 border-blue-200' :
+                    analysis.grade === 'C' ? 'bg-yellow-100 text-yellow-700 border-yellow-200' :
+                    'bg-red-100 text-red-700 border-red-200'
                   }`}>
                     {analysis.grade}
                   </div>
                 </div>
-                
-                <div className="p-8 space-y-10">
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                    <div>
-                      <div className="data-label mb-2">Energy</div>
-                      <div className="text-3xl font-serif">{analysis.calories}</div>
-                      <div className="text-[10px] text-brand-ink/30 uppercase tracking-widest mt-1">Kilocalories</div>
-                    </div>
-                    <div>
-                      <div className="data-label mb-2">Protein</div>
-                      <div className="text-3xl font-serif">{analysis.macros.protein}</div>
-                      <div className="text-[10px] text-brand-ink/30 uppercase tracking-widest mt-1">Grams</div>
-                    </div>
-                    <div>
-                      <div className="data-label mb-2">Carbs</div>
-                      <div className="text-3xl font-serif">{analysis.macros.carbs}</div>
-                      <div className="text-[10px] text-brand-ink/30 uppercase tracking-widest mt-1">Grams</div>
-                    </div>
-                    <div>
-                      <div className="data-label mb-2">Health Index</div>
-                      <div className="text-3xl font-serif">{analysis.healthScore}/10</div>
-                      <div className="text-[10px] text-brand-ink/30 uppercase tracking-widest mt-1">Composite Score</div>
-                    </div>
-                  </div>
 
-                  <div className="space-y-4">
-                    <div className="data-label">Description & Observations</div>
-                    <p className="text-brand-ink/70 leading-relaxed font-light italic">
-                      "{analysis.description}"
-                    </p>
+                <div className="grid grid-cols-3 gap-4">
+                  <div className="bg-white p-6 rounded-3xl border border-brand-olive/5">
+                    <Flame className="text-orange-500 mb-2" size={20} />
+                    <div className="text-2xl font-serif">{analysis.calories}</div>
+                    <div className="text-xs uppercase tracking-widest text-brand-olive/50">Calories</div>
                   </div>
-
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="p-6 bg-brand-ink text-white rounded-xl space-y-3">
-                      <div className="flex items-center gap-2 text-brand-accent">
-                        <Activity size={16} />
-                        <span className="text-[10px] font-bold uppercase tracking-widest">Metabolic Burn</span>
-                      </div>
-                      <p className="text-sm font-light leading-relaxed opacity-80">{analysis.burnInfo}</p>
-                    </div>
-                    <div className="p-6 bg-rose-50 border border-rose-100 rounded-xl space-y-3">
-                      <div className="flex items-center gap-2 text-rose-600">
-                        <ShieldAlert size={16} />
-                        <span className="text-[10px] font-bold uppercase tracking-widest text-rose-600">Health Risks</span>
-                      </div>
-                      <p className="text-sm font-light leading-relaxed text-rose-900/70">{analysis.healthRisks}</p>
-                    </div>
+                  <div className="bg-white p-6 rounded-3xl border border-brand-olive/5">
+                    <BarChart3 className="text-blue-500 mb-2" size={20} />
+                    <div className="text-2xl font-serif">{analysis.macros.protein}</div>
+                    <div className="text-xs uppercase tracking-widest text-brand-olive/50">Protein</div>
                   </div>
-
-                  <div className="p-6 border border-brand-border rounded-xl bg-brand-cream/50">
-                    <div className="flex items-center gap-2 mb-3 text-brand-ink/40">
-                      <Info size={14} />
-                      <span className="data-label">Laboratory Note</span>
-                    </div>
-                    <p className="text-sm text-brand-ink/60 leading-relaxed">
-                      {analysis.funFact}
-                    </p>
+                  <div className="bg-white p-6 rounded-3xl border border-brand-olive/5">
+                    <Leaf className="text-green-500 mb-2" size={20} />
+                    <div className="text-2xl font-serif">{analysis.healthScore}/10</div>
+                    <div className="text-xs uppercase tracking-widest text-brand-olive/50">Health Score</div>
                   </div>
                 </div>
 
-                <div className="p-4 bg-brand-ink/5 border-t border-brand-border flex justify-center">
-                   <button 
-                    onClick={() => { setView('home'); setAnalysis(null); }}
-                    className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-ink/40 hover:text-brand-ink transition-colors"
+                <div className="bg-brand-olive/5 p-8 rounded-[2rem] border border-brand-olive/10">
+                  <div className="flex items-center gap-2 mb-4 text-brand-olive">
+                    <Info size={18} />
+                    <span className="text-sm font-bold uppercase tracking-widest">Fun Fact</span>
+                  </div>
+                  <p className="text-lg italic font-serif text-brand-olive/90 leading-relaxed">
+                    {analysis.funFact}
+                  </p>
+                </div>
+
+                <div className="space-y-4">
+                  <button 
+                    onClick={() => setShowHelp(!showHelp)}
+                    className="w-full border border-brand-olive/20 text-brand-olive py-4 rounded-2xl flex items-center justify-center gap-3 hover:bg-brand-olive/5 transition-all"
                   >
-                    Discard Analysis
+                    <Info size={20} />
+                    <span className="text-lg">{showHelp ? 'Hide Health Insights' : 'Show Health & Fitness Insights'}</span>
                   </button>
+
+                  <AnimatePresence>
+                    {showHelp && (
+                      <motion.div 
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className="overflow-hidden space-y-4"
+                      >
+                        <div className="bg-orange-50 p-6 rounded-3xl border border-orange-100">
+                          <div className="flex items-center gap-2 mb-3 text-orange-700">
+                            <Activity size={18} />
+                            <span className="text-sm font-bold uppercase tracking-widest">How to Burn</span>
+                          </div>
+                          <p className="text-orange-900/80 leading-relaxed">{analysis.burnInfo}</p>
+                        </div>
+                        <div className="bg-red-50 p-6 rounded-3xl border border-red-100">
+                          <div className="flex items-center gap-2 mb-3 text-red-700">
+                            <Stethoscope size={18} />
+                            <span className="text-sm font-bold uppercase tracking-widest">Health Risks</span>
+                          </div>
+                          <p className="text-red-900/80 leading-relaxed">{analysis.healthRisks}</p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               </div>
 
-              <div className="space-y-6">
-                <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-lg border border-brand-border">
-                  {image && (
-                    <img 
-                      src={image} 
-                      className="w-full h-full object-cover" 
-                      alt="Analyzed Food" 
-                    />
-                  )}
-                </div>
-                <div className="p-6 glass-card rounded-xl space-y-4">
-                  <div className="data-label">Analysis Metadata</div>
-                  <div className="space-y-2">
-                    <div className="flex justify-between text-[10px]">
-                      <span className="text-brand-ink/40">Timestamp</span>
-                      <span className="font-mono">{new Date().toLocaleTimeString()}</span>
-                    </div>
-                    <div className="flex justify-between text-[10px]">
-                      <span className="text-brand-ink/40">Method</span>
-                      <span className="font-mono">Visual Recognition</span>
-                    </div>
-                    <div className="flex justify-between text-[10px]">
-                      <span className="text-brand-ink/40">Confidence</span>
-                      <span className="font-mono text-emerald-600">98.2%</span>
-                    </div>
-                  </div>
+              <div className="relative">
+                {image && (
+                  <img 
+                    src={image} 
+                    className="w-full aspect-[4/5] object-cover rounded-[3rem] shadow-2xl" 
+                    alt="Analyzed Food" 
+                  />
+                )}
+                <div className="absolute top-8 right-8 bg-white/90 backdrop-blur px-6 py-3 rounded-full text-sm font-bold uppercase tracking-widest text-brand-olive">
+                  AI Verified
                 </div>
               </div>
             </motion.div>
@@ -507,125 +472,137 @@ export default function App() {
           {view === 'barcode' && barcodeResult && (
             <motion.div 
               key="barcode"
-              initial={{ opacity: 0, scale: 0.98 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.98 }}
-              className="grid lg:grid-cols-[1fr_400px] gap-12 items-start"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="pt-12 grid lg:grid-cols-2 gap-12"
             >
-              <div className="glass-card rounded-2xl overflow-hidden border-brand-border">
-                <div className="p-8 border-b border-brand-border flex justify-between items-center bg-white/40">
-                  <div>
-                    <div className="data-label mb-1">Barcode Decryption Report</div>
-                    <h2 className="text-4xl font-serif">{barcodeResult.productName}</h2>
+              <div className="space-y-8">
+                <button 
+                  onClick={() => { setView('home'); setShowHelp(false); }}
+                  className="flex items-center gap-2 text-sm text-brand-olive/60 hover:text-brand-olive"
+                >
+                  <X size={16} /> Close Analysis
+                </button>
+                <div className="flex justify-between items-start gap-4">
+                  <div className="space-y-4">
+                    <h2 className="text-5xl font-serif">{barcodeResult.productName}</h2>
+                    <p className="text-lg text-brand-olive/80 leading-relaxed">{barcodeResult.summary}</p>
                   </div>
-                  <div className={`w-16 h-16 rounded-lg flex items-center justify-center text-3xl font-serif font-bold ${
-                    barcodeResult.grade === 'A' ? 'bg-emerald-50 text-emerald-600 border border-emerald-100' :
-                    barcodeResult.grade === 'B' ? 'bg-blue-50 text-blue-600 border border-blue-100' :
-                    barcodeResult.grade === 'C' ? 'bg-amber-50 text-amber-600 border border-amber-100' :
-                    'bg-rose-50 text-rose-600 border border-rose-100'
+                  <div className={`shrink-0 w-20 h-20 rounded-2xl flex items-center justify-center text-4xl font-serif font-bold shadow-sm border ${
+                    barcodeResult.grade === 'A' ? 'bg-green-100 text-green-700 border-green-200' :
+                    barcodeResult.grade === 'B' ? 'bg-blue-100 text-blue-700 border-blue-200' :
+                    barcodeResult.grade === 'C' ? 'bg-yellow-100 text-yellow-700 border-yellow-200' :
+                    'bg-red-100 text-red-700 border-red-200'
                   }`}>
                     {barcodeResult.grade}
                   </div>
                 </div>
-                
-                <div className="p-8 space-y-10">
-                  <div className="grid grid-cols-3 gap-8">
-                    <div>
-                      <div className="data-label mb-2">Energy</div>
-                      <div className="text-3xl font-serif">{barcodeResult.calories}</div>
-                    </div>
-                    <div>
-                      <div className="data-label mb-2">Protein</div>
-                      <div className="text-3xl font-serif">{barcodeResult.macros.protein}</div>
-                    </div>
-                    <div>
-                      <div className="data-label mb-2">Fats</div>
-                      <div className="text-3xl font-serif">{barcodeResult.macros.fats}</div>
-                    </div>
-                  </div>
 
-                  <div className="space-y-6">
-                    <div className="data-label">Molecular Composition (Ingredients)</div>
-                    <div className="grid gap-3">
-                      {barcodeResult.ingredients.map((ing, i) => (
-                        <div 
-                          key={i} 
-                          className={`p-4 rounded-lg border flex items-center justify-between transition-all ${
-                            ing.isHarmful 
-                              ? 'bg-rose-50/50 border-rose-100' 
-                              : 'bg-emerald-50/50 border-emerald-100'
-                          }`}
-                        >
+                <div className="grid grid-cols-3 gap-4">
+                  <div className="bg-white p-6 rounded-3xl border border-brand-olive/5">
+                    <Flame className="text-orange-500 mb-2" size={20} />
+                    <div className="text-2xl font-serif">{barcodeResult.calories}</div>
+                    <div className="text-xs uppercase tracking-widest text-brand-olive/50">Calories</div>
+                  </div>
+                  <div className="bg-white p-6 rounded-3xl border border-brand-olive/5">
+                    <BarChart3 className="text-blue-500 mb-2" size={20} />
+                    <div className="text-2xl font-serif">{barcodeResult.macros.protein}</div>
+                    <div className="text-xs uppercase tracking-widest text-brand-olive/50">Protein</div>
+                  </div>
+                  <div className="bg-white p-6 rounded-3xl border border-brand-olive/5">
+                    <BarChart3 className="text-purple-500 mb-2" size={20} />
+                    <div className="text-2xl font-serif">{barcodeResult.macros.fats}</div>
+                    <div className="text-xs uppercase tracking-widest text-brand-olive/50">Fats</div>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <button 
+                    onClick={() => setShowHelp(!showHelp)}
+                    className="w-full border border-brand-olive/20 text-brand-olive py-4 rounded-2xl flex items-center justify-center gap-3 hover:bg-brand-olive/5 transition-all"
+                  >
+                    <Info size={20} />
+                    <span className="text-lg">{showHelp ? 'Hide Health Insights' : 'Show Health & Fitness Insights'}</span>
+                  </button>
+
+                  <AnimatePresence>
+                    {showHelp && (
+                      <motion.div 
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className="overflow-hidden space-y-4"
+                      >
+                        <div className="bg-orange-50 p-6 rounded-3xl border border-orange-100">
+                          <div className="flex items-center gap-2 mb-3 text-orange-700">
+                            <Activity size={18} />
+                            <span className="text-sm font-bold uppercase tracking-widest">How to Burn</span>
+                          </div>
+                          <p className="text-orange-900/80 leading-relaxed">{barcodeResult.burnInfo}</p>
+                        </div>
+                        <div className="bg-red-50 p-6 rounded-3xl border border-red-100">
+                          <div className="flex items-center gap-2 mb-3 text-red-700">
+                            <Stethoscope size={18} />
+                            <span className="text-sm font-bold uppercase tracking-widest">Health Risks</span>
+                          </div>
+                          <p className="text-red-900/80 leading-relaxed">{barcodeResult.healthRisks}</p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                <div className="space-y-6">
+                  <h3 className="text-2xl font-serif italic border-b border-brand-olive/10 pb-2">Ingredient Analysis</h3>
+                  <div className="grid gap-4">
+                    {barcodeResult.ingredients.map((ing, i) => (
+                      <div 
+                        key={i} 
+                        className={`p-4 rounded-2xl border transition-all ${
+                          ing.isHarmful 
+                            ? 'bg-red-50 border-red-100' 
+                            : 'bg-green-50 border-green-100'
+                        }`}
+                      >
+                        <div className="flex items-start justify-between gap-4">
                           <div className="flex items-center gap-3">
                             {ing.isHarmful ? (
-                              <ShieldAlert className="text-rose-500" size={16} />
+                              <AlertTriangle className="text-red-500 shrink-0" size={20} />
                             ) : (
-                              <CheckCircle2 className="text-emerald-500" size={16} />
+                              <CheckCircle2 className="text-green-500 shrink-0" size={20} />
                             )}
-                            <span className={`text-sm font-medium ${ing.isHarmful ? 'text-rose-900' : 'text-emerald-900'}`}>
+                            <span className={`font-medium ${ing.isHarmful ? 'text-red-900' : 'text-green-900'}`}>
                               {ing.name}
                             </span>
                           </div>
                           {ing.isHarmful && (
-                            <span className="text-[8px] font-bold uppercase tracking-widest bg-rose-100 text-rose-600 px-2 py-1 rounded">
+                            <span className="text-[10px] uppercase tracking-widest bg-red-200 text-red-800 px-2 py-1 rounded-full font-bold">
                               Harmful
                             </span>
                           )}
                         </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="p-6 bg-brand-ink text-white rounded-xl space-y-3">
-                      <div className="flex items-center gap-2 text-brand-accent">
-                        <Activity size={16} />
-                        <span className="text-[10px] font-bold uppercase tracking-widest">Metabolic Burn</span>
+                        {ing.isHarmful && ing.reason && (
+                          <p className="mt-2 text-sm text-red-700/80 leading-relaxed ml-8">
+                            {ing.reason}
+                          </p>
+                        )}
                       </div>
-                      <p className="text-sm font-light leading-relaxed opacity-80">{barcodeResult.burnInfo}</p>
-                    </div>
-                    <div className="p-6 bg-rose-50 border border-rose-100 rounded-xl space-y-3">
-                      <div className="flex items-center gap-2 text-rose-600">
-                        <ShieldAlert size={16} />
-                        <span className="text-[10px] font-bold uppercase tracking-widest text-rose-600">Health Risks</span>
-                      </div>
-                      <p className="text-sm font-light leading-relaxed text-rose-900/70">{barcodeResult.healthRisks}</p>
-                    </div>
+                    ))}
                   </div>
-                </div>
-
-                <div className="p-4 bg-brand-ink/5 border-t border-brand-border flex justify-center">
-                   <button 
-                    onClick={() => { setView('home'); setBarcodeResult(null); }}
-                    className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-ink/40 hover:text-brand-ink transition-colors"
-                  >
-                    Discard Analysis
-                  </button>
                 </div>
               </div>
 
-              <div className="space-y-6">
-                <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-lg border border-brand-border">
-                  {image && (
-                    <img 
-                      src={image} 
-                      className="w-full h-full object-cover" 
-                      alt="Analyzed Barcode" 
-                    />
-                  )}
-                </div>
-                <div className="p-6 glass-card rounded-xl space-y-4">
-                  <div className="data-label">Scan Metadata</div>
-                  <div className="space-y-2">
-                    <div className="flex justify-between text-[10px]">
-                      <span className="text-brand-ink/40">Timestamp</span>
-                      <span className="font-mono">{new Date().toLocaleTimeString()}</span>
-                    </div>
-                    <div className="flex justify-between text-[10px]">
-                      <span className="text-brand-ink/40">Method</span>
-                      <span className="font-mono">Barcode Decryption</span>
-                    </div>
-                  </div>
+              <div className="relative">
+                {image && (
+                  <img 
+                    src={image} 
+                    className="w-full aspect-[4/5] object-cover rounded-[3rem] shadow-2xl" 
+                    alt="Analyzed Barcode" 
+                  />
+                )}
+                <div className="absolute top-8 right-8 bg-white/90 backdrop-blur px-6 py-3 rounded-full text-sm font-bold uppercase tracking-widest text-brand-olive">
+                  Barcode Scan
                 </div>
               </div>
             </motion.div>
@@ -656,54 +633,34 @@ export default function App() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-brand-cream/95 backdrop-blur-md z-50 flex flex-col items-center justify-center gap-10"
+            className="fixed inset-0 bg-brand-cream/90 backdrop-blur-sm z-50 flex flex-col items-center justify-center gap-6"
           >
-            <div className="relative">
-              <div className="w-24 h-24 border-4 border-brand-border rounded-full" />
-              <motion.div 
-                animate={{ rotate: 360 }}
-                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-0 w-24 h-24 border-4 border-brand-accent border-t-transparent rounded-full"
-              />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <ShieldCheck size={32} className="text-brand-accent animate-pulse" />
-              </div>
-            </div>
-            <div className="text-center space-y-3">
-              <h3 className="text-3xl font-serif">Initiating Molecular Scan</h3>
-              <div className="flex flex-col items-center gap-1">
-                <p className="text-[10px] uppercase tracking-[0.3em] text-brand-ink/40">Deconstructing specimen data</p>
-                <div className="w-40 h-0.5 bg-brand-border overflow-hidden rounded-full mt-2">
-                  <motion.div 
-                    initial={{ x: "-100%" }}
-                    animate={{ x: "100%" }}
-                    transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                    className="w-full h-full bg-brand-accent"
-                  />
-                </div>
-              </div>
+            <Loader2 size={48} className="animate-spin text-brand-olive" />
+            <div className="text-center space-y-2">
+              <h3 className="text-2xl font-serif italic">Consulting the culinary oracle...</h3>
+              <p className="text-sm uppercase tracking-widest text-brand-olive/50">Analyzing flavors and nutrients</p>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
 
       {/* Footer */}
-      <footer className="border-t border-brand-border py-20 px-6 bg-white/50">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-start">
-          <div className="space-y-6">
+      <footer className="border-t border-brand-olive/5 py-16 px-6">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+          <div className="space-y-4">
             <Logo />
-            <p className="text-brand-ink/40 max-w-xs text-xs leading-relaxed font-light">
-              A clinical-grade awareness initiative dedicated to exposing the molecular reality of modern food production.
+            <p className="text-brand-olive/60 max-w-xs text-sm leading-relaxed">
+              Spreading awareness about ultra-processed foods and empowering you to make healthier choices through AI-driven insights.
             </p>
           </div>
-          <div className="flex flex-col md:items-end gap-10">
-            <div className="flex gap-10 text-[10px] font-bold uppercase tracking-widest text-brand-ink/40">
-              <a href="#" className="hover:text-brand-ink transition-colors">Privacy Protocol</a>
-              <a href="#" className="hover:text-brand-ink transition-colors">Terms of Service</a>
-              <a href="#" className="hover:text-brand-ink transition-colors">Lab Access</a>
+          <div className="flex flex-col md:items-end gap-6">
+            <div className="flex gap-8 text-xs font-bold uppercase tracking-widest text-brand-olive/40">
+              <a href="#" className="hover:text-brand-olive transition-colors">Privacy Policy</a>
+              <a href="#" className="hover:text-brand-olive transition-colors">Terms of Service</a>
+              <a href="#" className="hover:text-brand-olive transition-colors">Contact Us</a>
             </div>
-            <div className="text-[9px] text-brand-ink/20 uppercase tracking-[0.4em]">
-              © 2024 FOODUCATE MOLECULAR AWARENESS LAB
+            <div className="text-[10px] text-brand-olive/30 uppercase tracking-[0.3em]">
+              © 2024 FOODUCATE AWARENESS INITIATIVE
             </div>
           </div>
         </div>
